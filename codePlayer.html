@@ -1,0 +1,273 @@
+<hmtl>
+    
+    <head>
+        
+        <title>
+            Code Player    
+        </title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style type="text/css">
+            body{
+                margin:0;
+                padding:0;
+                background-color: #F7F7F7;
+            }
+            #topBar{
+                background-color: #EDEDED;
+                height: 45px;
+                width: 100%;
+                border-bottom: 1px solid #CBCBCB;
+                position: fixed;
+                overflow:hidden;
+                z-index:1;
+                
+            }
+            #title{
+                margin:0;
+                margin-right: 10px;
+                height:94%;
+                padding-top: 5px;
+                padding-left: 15px;
+                font-size: 180%;
+                font-family: 'Lato', sans-serif;
+                float:left;
+            }
+            
+            #section2{
+                z-index:2;    
+            }
+            
+            #buttonsContainer{
+                margin-left:auto;
+                margin-right: auto;
+                margin-top: 5px;
+                padding-right:130px;
+                width: 300px;
+                max-width:1300px;
+                overflow:hidden;
+                
+            }
+            
+            .buttons{
+                background-color: #E8F2FF;
+                margin:0;
+                float:left;
+                border: 1px solid #CBCBCB;
+                padding-right: 10px;
+                padding-left: 10px;
+                height: 28px;
+                padding-top: 6px;
+                font-family: 'Open Sans', sans-serif;
+                    -webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none; /* Safari */
+                    -khtml-user-select: none; /* Konqueror HTML */
+                    -moz-user-select: none; /* Old versions of Firefox */
+                    -ms-user-select: none; /* Internet Explorer/Edge */
+                        user-select: none;
+            
+            }
+            
+            #htmlButton{
+                border-radius: 5px 0px 0px 5px;
+                border-right:none;
+            }
+            #cssButton{
+                
+            }
+            
+            #jsButton{
+                
+                border-left: none;
+            }
+            #outputButton{
+                border-radius: 0px 5px 5px 0px;
+                border-left: none;
+            }
+            .bodySection{
+                
+                height: 100%;
+                width: 24.9%;
+                float: left;
+                border-right: 1px solid #E6E6E6;
+                background-color: #F7F7F7;
+                margin-top: 47px;
+                font-family: 'Open Sans', sans-serif;
+                
+            } 
+            
+            #htmlBody{
+                
+            }
+            
+            #cssBody{
+                
+            }
+            
+            #jsBody{
+                
+            }
+            
+            #outputBody{
+                
+                border-right: none;
+            }
+            
+            p{
+                padding-left: 10px;
+                padding-top: 20px;
+            }
+            
+            
+            input {
+                border: 0;
+                padding: 0;
+                margin: 0;
+                background: transparent;
+                font: 13px sans-serif;
+                width: 100%;
+                    }
+            #htmlText {
+                background-color: #E8F2FF;
+                }
+            #cssText {
+                background-color: #E8F2FF;
+                }
+            #jsText {
+                background-color: #E8F2FF;
+                }
+            .hoverColor{
+                background-color: blue;
+                }
+            #outputFrame{
+                width: 99%;
+                height: 99%;
+                border: none;
+                }
+            #instruct{position:absolute;
+            float:right;
+            z-index: 1;}
+        </style>
+        
+    </head>
+    
+    <body>
+      
+        <div id="topBar">
+            <p id="title"> CodePlayer</p>
+            
+                <div id="buttonsContainer">
+                    <div id="htmlButton" class="buttons">
+                        HTML
+                    </div>
+                    <div id="cssButton" class="buttons">
+                        CSS
+                    </div>
+                    <div id="jsButton" class="buttons">
+                        JavaScript
+                    </div>
+                    <div id="outputButton" class="buttons">
+                        Output
+                    </div>
+                </div>
+            
+        </div>
+        <div id="section2">
+            <div id="htmlBody" class="bodySection">
+                <p>HTML</p>
+                <hr>
+                <input type = "text" id="htmlText">
+                
+            </div>
+            <div id="cssBody" class="bodySection">
+                <p>CSS</p>
+                <hr>
+                <input type = "text" id="cssText">
+                
+            </div>
+            <div id="jsBody" class="bodySection">
+                <p>JavaScript</p>
+                <hr>
+                <input type = "text" id="jsText">
+               
+            </div>
+            <div id="outputBody" class="bodySection">
+                <p>Output</p>
+                <hr>
+                <iframe id="outputFrame">
+                
+                </iframe>
+            </div>
+        </div>
+        <script>
+            alert("Enter your code below and see the output in real time!");
+            function updateOutput() {
+                
+            $("#outputFrame").contents().find("html").html("<html><head><style type='text/css'>" + $("#cssText").val() + "</style></head><body>" + $("#htmlText").val() + "</body></html>");
+            document.getElementById("outputFrame").contentWindow.eval($("#jsText").val());
+                
+                
+                
+            }
+            x=1;
+            $("#htmlButton").click(function(){
+                $("#htmlBody").toggle();
+                if (x==1){
+                $(this).css("background-color", "##EDEDED");
+                    x=2;
+                }else if(x==2){
+                    $(this).css("background-color", "#E8F2FF");
+                        x=1;
+                }
+            });
+            
+            y=1;
+            $("#cssButton").click(function(){
+                $("#cssBody").toggle();
+               if (y==1){
+                $(this).css("background-color", "#EDEDED");
+                    y=2;
+                }else if(y==2){
+                    $(this).css("background-color", "#E8F2FF");
+                        y=1;
+                }
+            });
+            
+            z=1;
+            $("#jsButton").click(function(){
+                $("#jsBody").toggle();
+                if (z==1){
+                $(this).css("background-color", "#EDEDED");
+                    z=2;
+                }else if(z==2){
+                    $(this).css("background-color", "#E8F2FF");
+                        z=1;
+                }
+            });
+            
+            a=1;
+            $("#outputButton").click(function(){
+                $("#outputBody").toggle();
+                if (a==1){
+                $(this).css("background-color", "#EDEDED");
+                    a=2;
+                }else if(a==2){
+                    $(this).css("background-color", "#E8F2FF");
+                        a=1;
+                }
+            });
+            
+            $("input").on('change keyup paste', function() {
+    
+                updateOutput();
+                
+                
+            });
+        </script>
+        
+    </body>
+
+</hmtl>

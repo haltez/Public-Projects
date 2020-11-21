@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	
+	<head>
+		
+		<title>
+			Reaction Game
+		</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+		
+		<style type="text/css">
+		body{
+			text-align: center;
+			font-family: 'Open Sans', sans-serif;
+		}
+		#text{
+			font-weight: 700;
+			font-size: 18px;
+		}
+		#shape{
+			width:100px;
+			height:100px;
+			background-color:red;
+		}
+		.title{
+			background-color: #E8A87C;
+			width: 40%;
+			margin: auto;
+			border-radius: 10px;
+		}
+		#linkHome{
+			float:right;
+			position:fixed;
+		}
+
+		</style>	
+
+	</head>
+	
+	<body>
+		<div class="title">
+		<h2>Test Your Reactions!</h2>
+		</div>
+
+		<div>
+		<h3>Click on the boxes and circles as quickly as you can!</h3>
+		</div>
+
+		<a href="index.html"><p>Return Home</p></a>
+		<p id="text">Your time: </p>
+		<div id ="shape">
+		</div>
+		
+		<script type="text/javascript">
+			
+			function randomColor(){
+			var x = "#" + Math.floor(Math.random()*16777215).toString(16);
+			return (x)
+			}
+			
+			function randomNumber(){
+			var x = (Math.floor(Math.random()*3000)+1);
+			return (x)
+			}
+			
+			function randomShape(){
+			var value1 = 1;
+			var value2 = 2;
+			var chosenValue = Math.random() < 0.5 ? value1 : value2;
+			var x = "50%";
+			var y = 0;
+			if (chosenValue == value1){
+				return (x); 
+			}else{
+				return (y);
+			}	
+			}
+			
+			function randomHorizontal(){
+				var y = (Math.floor(Math.random()*500)+10);
+				return (y+"px");
+			}
+			
+			function randomVertical(){
+				var x = (Math.floor(Math.random()*300)+10);
+				return (x+"px");
+			}
+			
+			function randomHeight(){
+				var x = (Math.floor(Math.random()*100)+100)
+				return(x+"px");
+			}
+			
+			function randomWidth(){
+				var x = (Math.floor(Math.random()*100)+100)
+				return(x+"px");
+			}
+			
+			
+			function changeShape(){
+				document.getElementById("shape").style.display = "block";
+				document.getElementById("shape").style.backgroundColor = randomColor();
+				document.getElementById("shape").style.borderRadius = randomShape();
+				document.getElementById("shape").style.marginLeft = randomHorizontal();
+				document.getElementById("shape").style.marginTop = randomVertical();
+				document.getElementById("shape").style.height = randomHeight();
+				document.getElementById("shape").style.width = randomWidth();
+				startTime = new Date().getTime();
+			}
+			
+			var startTime = new Date().getTime();
+			
+			function makeAppear(){
+				setTimeout(changeShape, randomNumber());
+			}
+			
+				
+				
+				
+			document.getElementById("shape").onclick = function(){
+				var endTime = new Date().getTime();
+				document.getElementById("shape").style.display = "none";
+				makeAppear();
+				var timeDiff = endTime - startTime;
+				timeDiff /= 1000;
+				document.getElementById("text").innerHTML = "Your time: " + timeDiff + " seconds.";
+			}
+			
+		</script>
+	
+	</body>
+	
+</html>
