@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <title>Stopwatch</title>
+    
+    <style type="text/css">
+        body{
+          background-color: #ffcdb2;
+          text-align: center;
+          color: #6d6875;
+          font-family: 'Poppins', sans-serif;
+        }
+        #time{
+          font-size: 72px;
+        }
+        #title{
+          opacity: 95%;
+          background-color: #ffb4a2;
+          width: 60%;
+          margin: auto;
+          border-radius: 15px;
+          box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 1px 3.5px 0 rgba(0,0,0,0.19);
+        }
+        .button {
+        transition-duration: 0.4s;
+        padding: 10px;
+        margin-left: 15px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2), 0 1px 3.5px 0 rgba(0,0,0,0.19);
+        }
+        
+        #start:hover {
+          background-color: rgb(68, 173, 68);
+          color: white;
+        }
+        
+        #reset:hover {
+          background-color: rgba(255, 208, 0, 0.726);
+        }
+        
+        #stop:hover {
+          background-color: red;
+          color: white;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="title">
+      <h1>Simple Stopwatch</h1>
+    </div>
+    
+    <div id="time">
+        <p id="timeText"><span id="minutes">00</span>:<span id="seconds">00</span>:<span id="tens">00</span></p>
+    </div>
+    
+    <div id="buttons">
+    <button class="button" id="start">START</button>  
+    <button class="button" id="stop">STOP</button> 
+    <button class="button" id="reset">RESET</button> 
+    </div>
+
+    <script type="text/javascript">
+      var minutes = 00;
+      var seconds = 00; 
+      var tens = 00; 
+      var Interval ;
+
+      document.getElementById("start").onclick = function() {
+    
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
+      }
+      
+      document.getElementById("stop").onclick = function() {
+          clearInterval(Interval);
+      }
+      
+
+      document.getElementById("reset").onclick = function() {
+        clearInterval(Interval);
+        tens = "00";
+        seconds = "00";
+        minutes = "00";
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+        document.getElementById("tens").innerHTML = tens;
+      }
+      
+      function startTimer () {
+        tens++; 
+        
+        if(tens < 9){
+          document.getElementById("tens").innerHTML = "0" + tens;
+        }
+        
+        if (tens > 9){
+          document.getElementById("tens").innerHTML = tens;
+          
+        } 
+        
+        if (tens > 99) {
+          seconds++;
+          document.getElementById("seconds").innerHTML = "0" + seconds;
+          tens = 0;
+          document.getElementById("tens").innerHTML = "0" + 0;
+        }
+        
+        if (seconds > 9){
+          document.getElementById("seconds").innerHTML = seconds;
+        }
+
+        if (seconds > 60) {
+          minutes++;
+          document.getElementById("minutes").innerHTML = "0" + minutes;
+          seconds = 0;
+          document.getElementById("seconds").innerHTML = "0" + 0;
+        }
+
+        if (minutes > 9){
+          document.getElementById("minutes").innerHTML = minutes;
+        }
+      }
+      
+
+        </script>
+
+      </body>
+    </html>
